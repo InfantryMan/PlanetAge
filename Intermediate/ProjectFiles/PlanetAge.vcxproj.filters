@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\PlanetAge.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{30B4A5AD-5DDB-41A0-B8BA-E1F799C9B98B}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\PlanetAge.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\PlanetAgeEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{9859A79A-273E-4FFC-BBCD-30803A6F1ABE}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\PlanetAge">
+      <UniqueIdentifier>{33581E42-69DD-43AE-BD1B-61458CC3F5EC}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\PlanetAge\PlanetAge.Build.cs">
+      <Filter>Source\PlanetAge</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\PlanetAge\PlanetAge.cpp">
+      <Filter>Source\PlanetAge</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\PlanetAge\PlanetAge.h">
+      <Filter>Source\PlanetAge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\PlanetAge\PositionSettings.h">
+      <Filter>Source\PlanetAge</Filter>
+    </ClInclude>
+    <Filter Include="Source\PlanetAge\GameCard">
+      <UniqueIdentifier>{30DFF7DF-5112-4797-8A68-7A96A9863ED7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\PlanetAge\GameCard\PlanetComponent">
+      <UniqueIdentifier>{3B3F3038-88D0-4A78-BAB9-7CFB9D3DE8EC}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\PlanetAge\GameCard\PlanetComponent\PlanetCoefficientValues.h">
+      <Filter>Source\PlanetAge\GameCard\PlanetComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\PlanetAge\GameCard\PlanetComponent\PlanetStruct.h">
+      <Filter>Source\PlanetAge\GameCard\PlanetComponent</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\PlanetAge\GameCard.cpp">
+      <Filter>Source\PlanetAge\GameCard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\PlanetAge\PlanetAgeModel.cpp">
+      <Filter>Source\PlanetAge</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\PlanetAge\PlanetAgeView.cpp">
+      <Filter>Source\PlanetAge</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\PlanetAge\GameCard.h">
+      <Filter>Source\PlanetAge\GameCard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\PlanetAge\PlanetAgeModel.h">
+      <Filter>Source\PlanetAge</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\PlanetAge\PlanetAgeView.h">
+      <Filter>Source\PlanetAge</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

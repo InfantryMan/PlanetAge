@@ -1,0 +1,130 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "PlanetAge (Debug)",
+			"request": "launch",
+			"preLaunchTask": "PlanetAge Win64 Debug Build",
+			"program": "D:\\UnrealEngine Projects\\PlanetAge\\Binaries\\Win64\\PlanetAge-Win64-Debug.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.20",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.20\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "PlanetAge (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "PlanetAge Win64 DebugGame Build",
+			"program": "D:\\UnrealEngine Projects\\PlanetAge\\Binaries\\Win64\\PlanetAge-Win64-DebugGame.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.20",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.20\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "PlanetAge (Development)",
+			"request": "launch",
+			"preLaunchTask": "PlanetAge Win64 Development Build",
+			"program": "D:\\UnrealEngine Projects\\PlanetAge\\Binaries\\Win64\\PlanetAge.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.20",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.20\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "PlanetAge (Shipping)",
+			"request": "launch",
+			"preLaunchTask": "PlanetAge Win64 Shipping Build",
+			"program": "D:\\UnrealEngine Projects\\PlanetAge\\Binaries\\Win64\\PlanetAge-Win64-Shipping.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.20",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.20\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "PlanetAge (Test)",
+			"request": "launch",
+			"preLaunchTask": "PlanetAge Win64 Test Build",
+			"program": "D:\\UnrealEngine Projects\\PlanetAge\\Binaries\\Win64\\PlanetAge-Win64-Test.exe",
+			"args": [
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.20",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.20\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "PlanetAgeEditor (Debug)",
+			"request": "launch",
+			"preLaunchTask": "PlanetAgeEditor Win64 Debug Build",
+			"program": "C:\\Program Files\\Epic Games\\UE_4.20\\Engine\\Binaries\\Win64\\UE4Editor-Win64-Debug.exe",
+			"args": [
+				"D:\\UnrealEngine Projects\\PlanetAge\\PlanetAge.uproject",
+				"-debug"
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.20",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.20\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "PlanetAgeEditor (DebugGame)",
+			"request": "launch",
+			"preLaunchTask": "PlanetAgeEditor Win64 DebugGame Build",
+			"program": "C:\\Program Files\\Epic Games\\UE_4.20\\Engine\\Binaries\\Win64\\UE4Editor.exe",
+			"args": [
+				"D:\\UnrealEngine Projects\\PlanetAge\\PlanetAge.uproject",
+				"-debug"
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.20",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.20\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "PlanetAgeEditor (Development)",
+			"request": "launch",
+			"preLaunchTask": "PlanetAgeEditor Win64 Development Build",
+			"program": "C:\\Program Files\\Epic Games\\UE_4.20\\Engine\\Binaries\\Win64\\UE4Editor.exe",
+			"args": [
+				"D:\\UnrealEngine Projects\\PlanetAge\\PlanetAge.uproject"
+			],
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.20",
+			"stopAtEntry": false,
+			"externalConsole": true,
+			"type": "cppvsdbg",
+			"visualizerFile": "C:\\Program Files\\Epic Games\\UE_4.20\\Engine\\Extras\\VisualStudioDebugging\\UE4.natvis"
+		},
+		{
+			"name": "Generate Project Files",
+			"type": "clr",
+			"request": "launch",
+			"program": "C:\\Program Files\\Epic Games\\UE_4.20\\Engine\\Binaries\\DotNET\\UnrealBuildTool.exe",
+			"console": "externalTerminal",
+			"args": [
+				"-projectfiles",
+				"-vscode",
+				"-project=\"D:\\UnrealEngine Projects\\PlanetAge\\PlanetAge.uproject\"",
+				"-game",
+				"-engine"
+			],
+			"internalConsoleOptions": "openOnSessionStart",
+			"cwd": "C:\\Program Files\\Epic Games\\UE_4.20"
+		}
+	]
+}

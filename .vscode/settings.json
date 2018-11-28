@@ -1,0 +1,9 @@
+{
+	"files.exclude": {
+		"D:/UnrealEngine Projects/PlanetAge/.vs": true,
+		"D:/UnrealEngine Projects/PlanetAge/.vscode": true,
+		"D:/UnrealEngine Projects/PlanetAge/Content": true,
+		"D:/UnrealEngine Projects/PlanetAge/Intermediate": true,
+		"D:/UnrealEngine Projects/PlanetAge/Saved": true
+	}
+}
