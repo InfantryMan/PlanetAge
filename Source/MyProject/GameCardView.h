@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-
+#include "ProceduralMeshComponent.h"
 #include "PlanetCoefficientValues.h"
 
 #include "GameCardView.generated.h"
@@ -33,14 +33,38 @@ public:
 	static const int xLeftSideCardSize = 182;
 	static const int xRightSizeCardSize = xCardSize - xLeftSideCardSize;
 
+	// Chart 
+	static const int32 lengthOfAxisY = 125;
+	static const int32 lengthOfAxisX = 150;
+	static const int32 thicknessOfAxes = 4;
+	static const int32 lengthOfArrow = 20;
+	static const int32 widthOfArrow = 2 * thicknessOfAxes;
+
+	static const int32 thicknessOfChart = 1;
+
+
 	// Meshes:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Meshes)
-		UStaticMeshComponent* CardMesh;
+		UStaticMeshComponent *CardMesh;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Meshes)
-		UStaticMeshComponent* PlanetMesh;
+		UStaticMeshComponent *PlanetMesh;
 
 	UPROPERTY(EditAnywhere)
 		FPlanetCoefficientValues Coeffs;
 
+	UPROPERTY(VisibleAnywhere)
+		UProceduralMeshComponent *ChartAxesProceduralMesh;
+
+	UPROPERTY(VisibleAnywhere)
+		UProceduralMeshComponent *ChartProceduralMesh;
+
+	UPROPERTY(EditAnywhere)
+		USceneComponent *ChartAxesSceneComponent;
+
+	UPROPERTY(EditAnywhere)
+		USceneComponent *ChartSceneComponent;
+
+	UFUNCTION(BlueprintCallable)
+		void drawChart();
 };
