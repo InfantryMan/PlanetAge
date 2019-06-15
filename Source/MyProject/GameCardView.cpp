@@ -2,25 +2,28 @@
 
 #include "GameCardView.h"
 
-double f(double const& v) {
+double f(double const& v) 
+{
 	return v * v;
 }
 
-double f1(double const& v) {
+double f1(double const& v) 
+{
 	return 5 / (v + 5);
 }
 
 // Because of X and Y axes in UE are right-handed, we need left-handed
-void addVertex(TArray<FVector> & vertices, FVector const& vect) {
-	vertices.Add(FVector(vect.Y, vect.X, vect.Z));
+void AGameCardView::AddVertex(TArray<FVector> & Vertices, FVector const& Vect) 
+{
+	Vertices.Add(FVector(Vect.Y, Vect.X, Vect.Z));
 }
 
-
 // Sets default values
-AGameCardView::AGameCardView()
+AGameCardView::AGameCardView():
+	ChartPosition(DEFAULT_CHART_POSITION)
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	if (!RootComponent)
 	{
@@ -46,34 +49,24 @@ AGameCardView::AGameCardView()
 		CardMesh->SetMaterial(0, FoundCardMaterial.Object);
 	}
 
-	this->ChartAxesProceduralMesh = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("ChartAxesProceduralMesh"));
-	this->ChartProceduralMesh = CreateDefaultSubobject<UProceduralMeshComponent>(TEXT("ChartProceduralMesh"));
+	this->ChartPrimitiveComponent = CreateDefaultSubobject<UChartPrimitiveComponent>(TEXT("ChartPrimitiveComponent"));
+	this->ChartPrimitiveComponent->SetupAttachment(RootComponent);
+	this->ChartPrimitiveComponent->SetRelativeLocation(ChartPosition);
+	this->ChartPrimitiveComponent->SetupGeometry();
 
-	this->ChartAxesSceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("ChartAxesSceneComponent"));
-	this->ChartAxesSceneComponent->AttachTo(RootComponent);
-	this->ChartAxesSceneComponent->SetRelativeLocation(FVector(-290, 17.5, 22));
-	this->ChartAxesProceduralMesh->SetupAttachment(ChartAxesSceneComponent);
-
-	this->ChartSceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("ChartSceneComponent"));
-	this->ChartSceneComponent->AttachTo(RootComponent);
-	this->ChartSceneComponent->SetRelativeLocation(FVector(-290 + thicknessOfChart, 17.5 + thicknessOfChart, 22));
-	this->ChartProceduralMesh->SetupAttachment(ChartSceneComponent);
-
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
-
+	/*
 	TArray<FVector> vertices;
 	// axis Y
-	addVertex(vertices, FVector(0, 0, 0));
-	addVertex(vertices, FVector(0, lengthOfAxisY, 0));
-	addVertex(vertices, FVector(thicknessOfAxes, lengthOfAxisY, 0));
-	addVertex(vertices, FVector(thicknessOfAxes, 0, 0));
+	AddVertex(vertices, FVector(0, 0, 0));
+	AddVertex(vertices, FVector(0, lengthOfAxisY, 0));
+	AddVertex(vertices, FVector(thicknessOfAxes, lengthOfAxisY, 0));
+	AddVertex(vertices, FVector(thicknessOfAxes, 0, 0));
 
 	// axis X
-	addVertex(vertices, FVector(0, 0, 0));
-	addVertex(vertices, FVector(lengthOfAxisX, 0, 0));
-	addVertex(vertices, FVector(lengthOfAxisX, thicknessOfAxes, 0));
-	addVertex(vertices, FVector(0, thicknessOfAxes, 0));
+	AddVertex(vertices, FVector(0, 0, 0));
+	AddVertex(vertices, FVector(lengthOfAxisX, 0, 0));
+	AddVertex(vertices, FVector(lengthOfAxisX, thicknessOfAxes, 0));
+	AddVertex(vertices, FVector(0, thicknessOfAxes, 0));
 
 	// arrows on the axis Y
 	int32 yAxisArrow_Mid = lengthOfAxisY - 0.16 * lengthOfArrow;
@@ -82,13 +75,13 @@ AGameCardView::AGameCardView()
 	int32 yAxisArrow_Left = thicknessOfAxes / 2 - widthOfArrow / 2;
 	int32 yAxisArrow_Right = thicknessOfAxes / 2 + widthOfArrow / 2;
 
-	addVertex(vertices, FVector(thicknessOfAxes / 2, yAxisArrow_Mid, 0));
-	addVertex(vertices, FVector(thicknessOfAxes / 2, yAxisArrow_Top, 0));
-	addVertex(vertices, FVector(yAxisArrow_Left, yAxisArrow_Bottom, 0));
+	AddVertex(vertices, FVector(thicknessOfAxes / 2, yAxisArrow_Mid, 0));
+	AddVertex(vertices, FVector(thicknessOfAxes / 2, yAxisArrow_Top, 0));
+	AddVertex(vertices, FVector(yAxisArrow_Left, yAxisArrow_Bottom, 0));
 
-	addVertex(vertices, FVector(thicknessOfAxes / 2, yAxisArrow_Mid, 0));
-	addVertex(vertices, FVector(thicknessOfAxes / 2, yAxisArrow_Top, 0));
-	addVertex(vertices, FVector(yAxisArrow_Right, yAxisArrow_Bottom, 0));
+	AddVertex(vertices, FVector(thicknessOfAxes / 2, yAxisArrow_Mid, 0));
+	AddVertex(vertices, FVector(thicknessOfAxes / 2, yAxisArrow_Top, 0));
+	AddVertex(vertices, FVector(yAxisArrow_Right, yAxisArrow_Bottom, 0));
 
 	// arrows on the axis X
 	int32 xAxisArrow_Mid = lengthOfAxisX - 0.16 * lengthOfArrow;
@@ -97,13 +90,13 @@ AGameCardView::AGameCardView()
 	int32 xAxisArrow_Top = thicknessOfAxes / 2 + widthOfArrow / 2;
 	int32 xAxisArrow_Bottom = thicknessOfAxes / 2 - widthOfArrow / 2;
 
-	addVertex(vertices, FVector(xAxisArrow_Mid, thicknessOfAxes / 2, 0));
-	addVertex(vertices, FVector(xAxisArrow_Right, thicknessOfAxes / 2, 0));
-	addVertex(vertices, FVector(xAxisArrow_Left, xAxisArrow_Top, 0));
+	AddVertex(vertices, FVector(xAxisArrow_Mid, thicknessOfAxes / 2, 0));
+	AddVertex(vertices, FVector(xAxisArrow_Right, thicknessOfAxes / 2, 0));
+	AddVertex(vertices, FVector(xAxisArrow_Left, xAxisArrow_Top, 0));
 
-	addVertex(vertices, FVector(xAxisArrow_Mid, thicknessOfAxes / 2, 0));
-	addVertex(vertices, FVector(xAxisArrow_Right, thicknessOfAxes / 2, 0));
-	addVertex(vertices, FVector(xAxisArrow_Left, xAxisArrow_Bottom, 0));
+	AddVertex(vertices, FVector(xAxisArrow_Mid, thicknessOfAxes / 2, 0));
+	AddVertex(vertices, FVector(xAxisArrow_Right, thicknessOfAxes / 2, 0));
+	AddVertex(vertices, FVector(xAxisArrow_Left, xAxisArrow_Bottom, 0));
 
 	TArray<int32> triangles;
 	triangles.Add(0);
@@ -143,7 +136,7 @@ AGameCardView::AGameCardView()
 	TArray<FLinearColor> vertexColors;
 
 	ChartAxesProceduralMesh->CreateMeshSection_LinearColor(0, vertices, triangles, normals, UV0, vertexColors, tangents, true);
-
+	*/
 }
 
 // Called when the game starts or when spawned
@@ -160,7 +153,8 @@ void AGameCardView::Tick(float DeltaTime)
 
 }
 
-void AGameCardView::drawChart()
+/*
+void AGameCardView::DrawChart()
 {
 	this->ChartProceduralMesh->ClearAllMeshSections();
 	TArray<FVector> vertices;
@@ -182,10 +176,12 @@ void AGameCardView::drawChart()
 	TArray<double> xValues;
 	TArray<double> yValues;
 
-	for (uint32 indexOfCurrentPoint = 0; indexOfCurrentPoint < numberOfPoints; indexOfCurrentPoint++) {
+	for (uint32 indexOfCurrentPoint = 0; indexOfCurrentPoint < numberOfPoints; indexOfCurrentPoint++) 
+	{
 		double xValue = xLeftBound + indexOfCurrentPoint * step;
-		double yValue = f1(xValue);
-		if (yValue > yMax) {
+		double yValue = f(xValue);
+		if (yValue > yMax) 
+		{
 			yMax = yValue;
 		}
 		xValues.Add(xValue);
@@ -195,14 +191,16 @@ void AGameCardView::drawChart()
 	TArray<double> xCoords;
 	TArray<double> yCoords;
 
-	for (int32 i = 0; i < xValues.Num(); i++) {
+	for (int32 i = 0; i < xValues.Num(); i++) 
+	{
 		double xCoord = xValues[i] * this->lengthOfAxisX / xMax;
 		double yCoord = yValues[i] * this->lengthOfAxisY / yMax;
 		xCoords.Add(xCoord);
 		yCoords.Add(yCoord);
 	}
 
-	for (int32 i = 0; i < xCoords.Num() - 1; i++) {
+	for (int32 i = 0; i < xCoords.Num() - 1; i++) 
+	{
 		FVector2D pointA(xCoords[i], yCoords[i]);
 		FVector2D pointB(xCoords[i+1], yCoords[i+1]);
 
@@ -216,10 +214,10 @@ void AGameCardView::drawChart()
 		FVector2D leftHandPerpendicular_vectorBA = thicknessOfChart * FVector2D(vectorBA_normalized.Y, -vectorBA_normalized.X) + pointB;
 		FVector2D rightHandPerpendicular_vectorBA = thicknessOfChart * FVector2D(-vectorBA_normalized.Y, vectorBA_normalized.X) + pointB;
 
-		addVertex(vertices, FVector(leftHandPerpendicular_vectorAB.X, leftHandPerpendicular_vectorAB.Y, 0));
-		addVertex(vertices, FVector(leftHandPerpendicular_vectorBA.X, leftHandPerpendicular_vectorBA.Y, 0));
-		addVertex(vertices, FVector(rightHandPerpendicular_vectorBA.X, rightHandPerpendicular_vectorBA.Y, 0));
-		addVertex(vertices, FVector(rightHandPerpendicular_vectorAB.X, rightHandPerpendicular_vectorAB.Y, 0));
+		AddVertex(vertices, FVector(leftHandPerpendicular_vectorAB.X, leftHandPerpendicular_vectorAB.Y, 0));
+		AddVertex(vertices, FVector(leftHandPerpendicular_vectorBA.X, leftHandPerpendicular_vectorBA.Y, 0));
+		AddVertex(vertices, FVector(rightHandPerpendicular_vectorBA.X, rightHandPerpendicular_vectorBA.Y, 0));
+		AddVertex(vertices, FVector(rightHandPerpendicular_vectorAB.X, rightHandPerpendicular_vectorAB.Y, 0));
 
 		triangles.Add(i * 4);
 		triangles.Add(i * 4 + 1);
@@ -232,4 +230,4 @@ void AGameCardView::drawChart()
 
 	ChartProceduralMesh->CreateMeshSection_LinearColor(0, vertices, triangles, normals, UV0, vertexColors, tangents, true);
 }
-
+*/

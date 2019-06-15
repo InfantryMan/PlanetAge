@@ -11,12 +11,12 @@ void AGameLevelScript::GenerateGameField(const int32 cardsNumber)
 	const int yCardsNum = 3;
 
 	// Space between cards by X and Y
-	const float dx = (xSize - (AGameCardView::xCardSize * xCardsNum)) / (xCardsNum + 1);
-	const float dy = (ySize - (AGameCardView::yCardSize * yCardsNum)) / (yCardsNum + 1);
+	const float dx = (xSize - (AGameCardView::XCardSize * xCardsNum)) / (xCardsNum + 1);
+	const float dy = (ySize - (AGameCardView::YCardSize * yCardsNum)) / (yCardsNum + 1);
 
 	// Space between cards by X and Y relative to the origin of maps
-	const float xLen = dx + AGameCardView::xCardSize;
-	const float yLen = dy + AGameCardView::yCardSize;
+	const float xLen = dx + AGameCardView::XCardSize;
+	const float yLen = dy + AGameCardView::YCardSize;
 
 	const float topLeftX = 218.3;
 	const float topleftY = 107;
@@ -24,7 +24,7 @@ void AGameLevelScript::GenerateGameField(const int32 cardsNumber)
 
 	FVector topLeftCardPosition(topLeftX, topleftY, topLeftZ);
 	FVector currentCardPosition = topLeftCardPosition;
-	FRotator cardRotation(0.0f, -90.0f, 0.0f);
+	FRotator cardRotation(0.0f, 0.0f, 0.0f);
 	FActorSpawnParameters spawnParams;
 	spawnParams.Owner = this;
 

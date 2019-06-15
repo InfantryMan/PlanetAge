@@ -5,9 +5,14 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "ProceduralMeshComponent.h"
+#include "ChartPrimitiveComponent.h"
 #include "PlanetCoefficientValues.h"
 
 #include "GameCardView.generated.h"
+
+const FVector DEFAULT_CHART_POSITION_ = FVector(-290, 17.5, 22);
+const FVector DEFAULT_CHART_POSITION = FVector(18, 290, 21.5);
+
 
 UCLASS()
 class MYPROJECT_API AGameCardView : public AActor
@@ -17,6 +22,7 @@ class MYPROJECT_API AGameCardView : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AGameCardView();
+	static void AddVertex(TArray<FVector> & Vertices, FVector const& Vect);
 
 protected:
 	// Called when the game starts or when spawned
@@ -27,21 +33,14 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	// Size of GameCard
-	static const int xCardSize = 488;
-	static const int yCardSize = 302;
-	static const int zCardSize = 30;
-	static const int xLeftSideCardSize = 182;
-	static const int xRightSizeCardSize = xCardSize - xLeftSideCardSize;
+	static const int XCardSize = 488;
+	static const int YCardSize = 302;
+	static const int ZCardSize = 30;
+	static const int XLeftSideCardSize = 182;
+	static const int XRightSizeCardSize = XCardSize - XLeftSideCardSize;
 
-	// Chart 
-	static const int32 lengthOfAxisY = 125;
-	static const int32 lengthOfAxisX = 150;
-	static const int32 thicknessOfAxes = 4;
-	static const int32 lengthOfArrow = 20;
-	static const int32 widthOfArrow = 2 * thicknessOfAxes;
-
-	static const int32 thicknessOfChart = 1;
-
+	// Chart position
+	FVector ChartPosition;
 
 	// Meshes:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Meshes)
@@ -53,18 +52,6 @@ public:
 	UPROPERTY(EditAnywhere)
 		FPlanetCoefficientValues Coeffs;
 
-	UPROPERTY(VisibleAnywhere)
-		UProceduralMeshComponent *ChartAxesProceduralMesh;
-
-	UPROPERTY(VisibleAnywhere)
-		UProceduralMeshComponent *ChartProceduralMesh;
-
 	UPROPERTY(EditAnywhere)
-		USceneComponent *ChartAxesSceneComponent;
-
-	UPROPERTY(EditAnywhere)
-		USceneComponent *ChartSceneComponent;
-
-	UFUNCTION(BlueprintCallable)
-		void drawChart();
+		UChartPrimitiveComponent *ChartPrimitiveComponent;
 };
