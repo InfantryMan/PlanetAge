@@ -7,6 +7,9 @@
 #include "ProceduralMeshComponent.h"
 #include "ChartPrimitiveComponent.h"
 #include "PlanetCoefficientValues.h"
+#include "EngineGlobals.h"
+#include "Engine.h"
+#include "Runtime/Engine/Classes/GameFramework/Actor.h"
 
 #include "GameCardView.generated.h"
 
@@ -39,6 +42,10 @@ public:
 	static const int XLeftSideCardSize = 182;
 	static const int XRightSizeCardSize = XCardSize - XLeftSideCardSize;
 
+	FTimerHandle TimerHandle;
+	UFUNCTION()
+		void OnTimerEnd();
+
 	// Chart position
 	FVector ChartPosition;
 
@@ -52,6 +59,6 @@ public:
 	UPROPERTY(EditAnywhere)
 		FPlanetCoefficientValues Coeffs;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UChartPrimitiveComponent *ChartPrimitiveComponent;
 };

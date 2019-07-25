@@ -18,9 +18,6 @@ UChartComponent::UChartComponent()
 void UChartComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
-	// ...
-	
 }
 
 
@@ -28,7 +25,5 @@ void UChartComponent::BeginPlay()
 void UChartComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
 }
 

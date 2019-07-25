@@ -6,15 +6,30 @@
 #include "ProceduralMeshComponent.h"
 #include "Components/PrimitiveComponent.h"
 #include "Runtime/Core/Public/Math/Color.h"
+#include "Runtime/Engine/Classes/Components/TextRenderComponent.h"
 #include "ChartPrimitiveComponent.generated.h"
 
-const int32 DEFAULT_RECT_HEIGHT = 125;
-const int32 DEFAULT_RECT_WIDTH = 150;
-const int32 DEFAULT_OFFSET = 5;
-const int32 DEFAULT_AXES_THICKNESS = 4;
-const int32 DEFAULT_CHART_THICKNESS = 3;
-const int32 DEFAULT_ARROW_LENGTH = 20;
-const int32 DEFAULT_ARROW_WIDTH = 2 * DEFAULT_AXES_THICKNESS;
+const float DEFAULT_RECT_HEIGHT = 125;
+const float DEFAULT_RECT_WIDTH = 150;
+const float DEFAULT_OFFSET = 10;
+const float DEFAULT_AXES_THICKNESS = 2;
+const float DEFAULT_CHART_THICKNESS = 2;
+const float DEFAULT_ARROW_LENGTH = 8;
+const float DEFAULT_ARROW_WIDTH = 2 * DEFAULT_AXES_THICKNESS;
+const float DEFAULT_AVAILABLE_COEF = 0.9;
+
+const float DEFAULT_TEXT_SIZE = 14;
+const float DEFAULT_TEXT_WIDTH = DEFAULT_TEXT_SIZE / 2;
+const FColor DEFAULT_TEXT_COLOR = FColor(0, 0, 0);
+
+const float DEFAULT_NUMBER_SIZE = 10;
+const float DEFAULT_NUMBER_WIDTH = DEFAULT_NUMBER_SIZE / 1.5;
+const FColor DEFAULT_NUMBER_COLOR = FColor(0, 0, 0);
+
+const float DEFAULT_DOTTED_LINE_WIDTH = 1;
+const float DEFAULT_DOTTED_LINE_LENGTH = 2;
+const float DEFAULT_DOTTED_LINE_GAP = 1.5;
+
 
 /**
  * 
@@ -25,15 +40,33 @@ class MYPROJECT_API UChartPrimitiveComponent : public UPrimitiveComponent
 	GENERATED_BODY()
 
 private:
-	int32 RectHeight;
-	int32 RectWidth;
+	float RectHeight;
+	float RectWidth;
+	float Offset;
+	float AvailableCoef;
+	float XAxisLength;
+	float YAxisLength;
+	float Xavailable;
+	float Yavailable;
 
-	int32 Offset;
-	int32 AxesThickness;
-	int32 ChartThickness;
 
-	int32 ArrowLength;
-	int32 ArrowWidth;
+	float AxesThickness;
+	float ChartThickness;
+
+	float ArrowLength;
+	float ArrowWidth;
+
+	float TextSize;
+	float TextWidth;
+	FColor TextColor;
+
+	float NumberSize;
+	float NumberWidth;
+	FColor NumberColor;
+
+	float DottedLineWidth;
+	float DottedLineLength;
+	float DottedLineGap;
 
 public:
 	UChartPrimitiveComponent();
@@ -42,23 +75,28 @@ public:
 	
 	void SetupGeometry();
 	void DrawRectangle();
-	void DrawAxes();
+	void DrawAxes(FVector2D origin);
+	UFUNCTION(BlueprintCallable)
+	void DrawBisChart();
+	void DrawOrtChart(TArray<FVector2D> Points);
+	void DrawInscription(TArray<FVector2D> Points, TArray<FVector2D> EnginePoints, FVector2D origin);
+	void DrawNumbers(TArray<FVector2D> Points, TArray<FVector2D> EnginePoints, FVector2D origin);
 
 public:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Meshes)
 		UProceduralMeshComponent *ChartAxesProceduralMesh;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Meshes)
 		UProceduralMeshComponent *ChartProceduralMesh;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Meshes)
 		UProceduralMeshComponent *RectangleProceduralMesh;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Meshes)
 		USceneComponent *ChartSceneComponent;
 
-	UPROPERTY(EditAnywhere)
-		USceneComponent *RectangleSceneComponent;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Meshes)
+		USceneComponent *OriginSceneComponent;
 
 	int32 GetRectHeight() const { return RectHeight; }
 	void SetRectHeight(int32 val) { RectHeight = val; }
